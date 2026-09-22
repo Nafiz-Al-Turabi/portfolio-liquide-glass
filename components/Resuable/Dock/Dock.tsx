@@ -5,32 +5,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import {
-  FiBarChart2,
-  FiCalendar,
-  FiFolder,
-  FiGrid,
-  FiImage,
+  FiBookOpen,
+  FiBriefcase,
+  FiDownload,
+  FiFacebook,
+  FiGithub,
+  FiHome,
+  FiInstagram,
+  FiLinkedin,
   FiMail,
-  FiMusic,
   FiSettings,
-  FiTrash2,
-  FiUsers,
+  FiUser,
 } from "react-icons/fi";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
 
 const dockItems = [
-  { name: "Dashboard", href: "/dashboard", icon: FiGrid },
-  { name: "Users", href: "/dashboard/users", icon: FiUsers },
-  { name: "Analytics", href: "/dashboard/analytics", icon: FiBarChart2 },
-  { name: "Files", href: "/dashboard/files", icon: FiFolder },
-  { name: "Messages", href: "/dashboard/messages", icon: FiMail },
-  { name: "Calendar", href: "/dashboard/calendar", icon: FiCalendar },
+  { name: "Home", href: "/", icon: FiHome },
+  { name: "About", href: "/about", icon: FiUser },
+  { name: "Work", href: "/work", icon: FiBriefcase },
+  { name: "Journal", href: "/journal", icon: FiBookOpen },
+  { name: "Contact", href: "/contact", icon: FiMail },
 ];
-
 const utilityItems = [
-  { name: "Settings", href: "/dashboard/settings", icon: FiSettings },
-  { name: "Gallery", href: "/dashboard/gallery", icon: FiImage },
-  { name: "Music", href: "/dashboard/music", icon: FiMusic },
+  { name: "GitHub", href: "https://github.com", icon: FiGithub },
+  { name: "LinkedIn", href: "https://linkedin.com", icon: FiLinkedin },
+  { name: "Facebook", href: "https://facebook.com", icon: FiFacebook },
+  { name: "Instagram", href: "https://instagram.com", icon: FiInstagram },
+  { name: "Resume", href: "/resume.pdf", icon: FiDownload },
 ];
 
 function Tooltip({ name }: { name: string }) {
@@ -97,22 +98,22 @@ export default function Dock() {
   }, []);
 
   const isActive = (href: string) =>
-    href === "/dashboard" ? pathname === href : pathname.startsWith(href);
+    href === "/" ? pathname === href : pathname.startsWith(href);
 
   return (
     <aside
       ref={dockRef}
-      className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2"
+      className="fixed bottom-4 left-1/2 z-40 w-[calc(100%-2rem)] max-w-max -translate-x-1/2"
     >
       <LiquidGlass
-        className="mx-auto max-w-7xl px-4 py-3"
+        className="mx-auto px-3 py-2.5 sm:px-4 sm:py-3"
         tint={0}
         tintTone="light"
         frost={0.5}
         radius={18}
         backdrop="auto"
       >
-        <div className="flex items-end gap-3">
+        <div className="flex items-end gap-1.5 sm:gap-3">
           {dockItems.map((item, index) => {
             const Icon = item.icon;
             const active = isActive(item.href);
@@ -128,13 +129,13 @@ export default function Dock() {
                 <Tooltip name={item.name} />
                 <Link
                   href={item.href}
-                  className="relative flex h-12 w-12 items-center justify-center"
+                  className="relative flex h-11 w-11 items-center justify-center sm:h-12 sm:w-12"
                 >
                   <span
                     className={`flex h-full w-full items-center justify-center rounded-2xl border shadow-xl transition-all ${
                       active
-                        ? "border-white/40 bg-white/50 text-black"
-                        : "border-white/20 bg-white/15 backdrop-blur-md"
+                        ? "border-white/60 bg-white/65 text-black shadow-[0_8px_24px_rgba(255,255,255,0.2)]"
+                        : "border-white/20 bg-white/15 text-white/85 backdrop-blur-md hover:border-white/40 hover:bg-white/30 hover:text-white"
                     }`}
                   >
                     <Icon size={22} className="drop-shadow-lg" />
@@ -160,7 +161,7 @@ export default function Dock() {
                 ref={(element) => {
                   itemRefs.current[itemIndex] = element;
                 }}
-                className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white backdrop-blur-md"
+                className="group relative flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white/75 backdrop-blur-md transition-colors hover:border-white/40 hover:bg-white/30 hover:text-white sm:h-12 sm:w-12"
               >
                 <Icon size={20} />
                 <Tooltip name={item.name} />
@@ -170,17 +171,19 @@ export default function Dock() {
 
           <DockSeparator />
 
-          <button
-            type="button"
-            aria-label="Trash"
+          <Link
+            href="/settings"
             ref={(element) => {
               itemRefs.current[dockItems.length + utilityItems.length] =
                 element;
             }}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white"
+            aria-label="Settings"
+            className="group relative flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white/75 backdrop-blur-md transition-colors hover:border-white/40 hover:bg-white/30 hover:text-white sm:h-12 sm:w-12"
           >
-            <FiTrash2 size={20} />
-          </button>
+            <FiSettings size={20} />
+            <Tooltip name="Settings" />
+          </Link>
+
         </div>
       </LiquidGlass>
     </aside>
@@ -188,5 +191,10 @@ export default function Dock() {
 }
 
 function DockSeparator() {
-  return <div className="mx-1 h-8 w-px bg-white/25" aria-hidden="true" />;
+  return (
+    <div
+      className="mx-1 h-8 w-px self-center bg-white/25"
+      aria-hidden="true"
+    />
+  );
 }
