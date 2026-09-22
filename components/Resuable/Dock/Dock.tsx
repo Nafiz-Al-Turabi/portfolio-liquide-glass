@@ -35,7 +35,7 @@ const utilityItems = [
 
 function Tooltip({ name }: { name: string }) {
   return (
-    <span className="pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs text-white opacity-0 backdrop-blur-xl transition group-hover:opacity-100">
+    <span className="pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs text-white opacity-0 backdrop-blur-md transition group-hover:opacity-100 after:absolute after:left-1/2 after:top-full after:-translate-x-1/2 after:border-x-[5px] after:border-t-[5px] after:border-x-transparent after:border-t-black/70 after:content-['']">
       {name}
     </span>
   );
