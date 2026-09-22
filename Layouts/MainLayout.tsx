@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import gsap from "gsap";
 
 import {
   FiGrid,
@@ -75,8 +76,58 @@ const utilityItems = [
 
 export default function MainLayout({ children }: MainLayoutProps) {
   const pathname = usePathname();
+  const dockRef = useRef<HTMLElement>(null);
+  const itemRefs = useRef<(HTMLElement | null)[]>([]);
 
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  useEffect(() => {
+    const dock = dockRef.current;
+    if (!dock) return;
+
+    const items = itemRefs.current.filter(
+      (item): item is HTMLElement => item !== null,
+    );
+
+    const resetItems = () => {
+      gsap.to(items, {
+        scale: 1,
+        y: 0,
+        marginLeft: 0,
+        marginRight: 0,
+        duration: 0.35,
+        ease: "power3.out",
+        overwrite: true,
+      });
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      items.forEach((item) => {
+        const bounds = item.getBoundingClientRect();
+        const distance = Math.abs(
+          event.clientX - (bounds.left + bounds.width / 2),
+        );
+        const influence = Math.max(0, 1 - distance / 180);
+
+        gsap.to(item, {
+          scale: 1 + influence * 0.55,
+          y: -influence * 12,
+          marginLeft: influence * 14,
+          marginRight: influence * 14,
+          duration: 0.25,
+          ease: "power3.out",
+          overwrite: true,
+        });
+      });
+    };
+
+    dock.addEventListener("pointermove", handlePointerMove);
+    dock.addEventListener("pointerleave", resetItems);
+
+    return () => {
+      dock.removeEventListener("pointermove", handlePointerMove);
+      dock.removeEventListener("pointerleave", resetItems);
+      gsap.killTweensOf(items);
+    };
+  }, []);
 
   const isActive = (href: string) => {
     if (href === "/dashboard") {
@@ -90,51 +141,42 @@ export default function MainLayout({ children }: MainLayoutProps) {
     <div
       className="min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: "url('/bg-lummipng.png')",
+        backgroundImage: "url('/lummi_QmPLmnAj.png')",
       }}
     >
-      {/* <div className="fixed inset-0 bg-black/20 backdrop-blur-[1px]" /> */}
+      <div className="fixed inset-0 bg-black/20 backdrop-blur-[1px]" />
 
       {/* =====================================================
-          LEFT DOCK
+          BOTTOM DOCK
       ====================================================== */}
-      <aside className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
+      <aside
+        ref={dockRef}
+        className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2"
+      >
         <LiquidGlass
-          className="p-4 w-20"
+          className="px-4 py-3 max-w-7xl mx-auto"
           tint={0.4}
           tintTone="light"
           frost={0.5}
-          radius={10}
+          radius={18}
           backdrop="auto"
         >
-          <div className="flex flex-col gap-4 ">
+          <div className="flex items-end gap-3">
             {dockItems.map((item, index) => {
               const Icon = item.icon;
               const active = isActive(item.href);
-
-              const distance =
-                hoveredIndex === null ? 999 : Math.abs(index - hoveredIndex);
-
-              let size = 48;
-
-              if (distance === 0) {
-                size = 68;
-              } else if (distance === 1) {
-                size = 58;
-              } else if (distance === 2) {
-                size = 52;
-              }
 
               return (
                 <div
                   key={item.href}
                   className="group relative"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
+                  ref={(element) => {
+                    itemRefs.current[index] = element;
+                  }}
                 >
                   {/* Tooltip */}
                   <div
-                    className="pointer-events-none absolute left-full top-1/2 ml-4 -translate-y-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs text-white opacity-0 backdrop-blur-xl transition group-hover:opacity-100
+                    className="pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs text-white opacity-0 backdrop-blur-xl transition group-hover:opacity-100
                   "
                   >
                     {item.name}
@@ -142,11 +184,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
                   <Link
                     href={item.href}
-                    className="relative flex items-center justify-center transition-all duration-200 ease-out"
-                    style={{
-                      width: size,
-                      height: size,
-                    }}
+                    className="relative flex h-12 w-12 items-center justify-center"
                   >
                     <div
                       className={`flex h-full w-full items-center justify-center rounded-2xl border shadow-xl transition-all
@@ -157,15 +195,12 @@ export default function MainLayout({ children }: MainLayoutProps) {
                       }
                     `}
                     >
-                      <Icon
-                        size={size > 60 ? 28 : 22}
-                        className="text-white drop-shadow-lg"
-                      />
+                      <Icon size={22} className="text-white drop-shadow-lg" />
                     </div>
 
                     {/* Active indicator */}
                     {active && (
-                      <span className="absolute -right-1 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white shadow-[0_0_8px_white]" />
+                      <span className="absolute -bottom-2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white shadow-[0_0_8px_white]" />
                     )}
                   </Link>
                 </div>
@@ -173,23 +208,26 @@ export default function MainLayout({ children }: MainLayoutProps) {
             })}
 
             {/* Separator */}
-            <div className="my-1 h-px w-8 bg-white/25" />
+            <div className="mx-1 h-8 w-px bg-white/25" />
 
             {/* Utilities */}
             {utilityItems.map((item, index) => {
               const Icon = item.icon;
+              const itemIndex = dockItems.length + index;
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group relative flex h-11 w-11 items-center justify-center rounded-[14px] border border-white/15 bg-white/10 text-white transition-all duration-200 hover:scale-110 hover:bg-white/25
-                "
+                  ref={(element) => {
+                    itemRefs.current[itemIndex] = element;
+                  }}
+                  className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white"
                 >
                   <Icon size={20} />
 
                   <span
-                    className="pointer-events-none absolute left-full ml-4 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs opacity-0 backdrop-blur-xl transition group-hover:opacity-100
+                    className="pointer-events-none absolute bottom-full left-1/2 mb-3 -translate-x-1/2 whitespace-nowrap rounded-lg bg-black/70 px-3 py-1.5 text-xs opacity-0 backdrop-blur-xl transition group-hover:opacity-100
                   "
                   >
                     {item.name}
@@ -199,41 +237,20 @@ export default function MainLayout({ children }: MainLayoutProps) {
             })}
 
             {/* Separator */}
-            <div className="my-1 h-px w-8 bg-white/25" />
+            <div className="mx-1 h-8 w-px bg-white/25" />
 
             {/* Trash */}
-            <button className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-white/15 bg-white/10 text-white transition hover:scale-110 hover:bg-white/25">
+            <button
+              ref={(element) => {
+                itemRefs.current[dockItems.length + utilityItems.length] = element;
+              }}
+              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white"
+            >
               <FiTrash2 size={20} />
             </button>
           </div>
         </LiquidGlass>
       </aside>
-
-      {/* =====================================================
-          MOBILE DOCK
-      ====================================================== */}
-      <nav className="fixed bottom-3 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1 rounded-[22px] border border-white/20 bg-white/15 px-2 py-2 shadow-2xl backdrop-blur-2xl lg:hidden">
-        {dockItems.slice(0, 5).map((item) => {
-          const Icon = item.icon;
-          const active = isActive(item.href);
-
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex h-11 w-11 items-center justify-center rounded-[13px] transition
-                ${
-                  active
-                    ? "bg-white/30 text-white"
-                    : "text-white/80 hover:bg-white/20"
-                }
-              `}
-            >
-              <Icon size={20} />
-            </Link>
-          );
-        })}
-      </nav>
 
       {/* =====================================================
           MAIN CONTENT
