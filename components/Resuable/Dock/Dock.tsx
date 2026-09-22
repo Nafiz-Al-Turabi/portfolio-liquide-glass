@@ -106,7 +106,7 @@ export default function Dock() {
     >
       <LiquidGlass
         className="mx-auto max-w-7xl px-4 py-3"
-        tint={0.4}
+        tint={0}
         tintTone="light"
         frost={0.5}
         radius={18}
@@ -133,11 +133,11 @@ export default function Dock() {
                   <span
                     className={`flex h-full w-full items-center justify-center rounded-2xl border shadow-xl transition-all ${
                       active
-                        ? "border-white/40 bg-white/35"
-                        : "border-white/20 bg-white/15"
+                        ? "border-white/40 bg-white/50 text-black"
+                        : "border-white/20 bg-white/15 backdrop-blur-md"
                     }`}
                   >
-                    <Icon size={22} className="text-white drop-shadow-lg" />
+                    <Icon size={22} className="drop-shadow-lg" />
                   </span>
                   {active && (
                     <span className="absolute -bottom-2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-white shadow-[0_0_8px_white]" />
@@ -160,7 +160,7 @@ export default function Dock() {
                 ref={(element) => {
                   itemRefs.current[itemIndex] = element;
                 }}
-                className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white"
+                className="group relative flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white backdrop-blur-md"
               >
                 <Icon size={20} />
                 <Tooltip name={item.name} />
@@ -174,7 +174,8 @@ export default function Dock() {
             type="button"
             aria-label="Trash"
             ref={(element) => {
-              itemRefs.current[dockItems.length + utilityItems.length] = element;
+              itemRefs.current[dockItems.length + utilityItems.length] =
+                element;
             }}
             className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-white"
           >
