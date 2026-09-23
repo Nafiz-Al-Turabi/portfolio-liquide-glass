@@ -93,7 +93,7 @@ export default function Dock() {
     return () => {
       dock.removeEventListener("pointermove", handlePointerMove);
       dock.removeEventListener("pointerleave", resetItems);
-      gsap.killTweensOf(items);
+      gsap.killTweensOf(items); 
     };
   }, []);
 

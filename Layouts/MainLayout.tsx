@@ -15,14 +15,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
         backgroundImage: "url('/lummi_QmPLmnAj.png')",
       }}
     >
-      <div className="fixed inset-0 bg-black/20 backdrop-blur-[1px]" />
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-[10px]" />
 
       <Dock />
 
       {/* =====================================================
           MAIN CONTENT
       ====================================================== */}
-      <main className="relative z-10 min-h-screen p-6 max-w-7xl mx-auto">
+      <main className="relative z-10 min-h-screen p-6 max-w-7xl mx-auto  ">
         {children}
       </main>
     </div>
