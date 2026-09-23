@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
 import {
   PRESET_WALLPAPERS,
   useSettings,
 } from "@/context/SettingsContext";
 import {
-  LuImagePlus,
   LuSlidersHorizontal,
   LuSparkles,
   LuRotateCcw,
@@ -39,28 +38,6 @@ export default function Settings() {
   } = useSettings();
 
   const [activeTab, setActiveTab] = useState<"appearance" | "glass" | "system">("appearance");
-  const [uploadError, setUploadError] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 6 * 1024 * 1024) {
-      setUploadError("Image size exceeds 6MB. Please pick a smaller image.");
-      return;
-    }
-
-    setUploadError(null);
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const result = event.target?.result as string;
-      if (result) {
-        setWallpaper(result);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
 
   return (
     <div className="text-white w-full max-w-5xl mx-auto pb-24 sm:pb-28 pt-1 sm:pt-4 px-1">
@@ -85,7 +62,7 @@ export default function Settings() {
         </button>
       </div>
 
-      {/* Tabs Switcher - Fully responsive with horizontal scroll on small devices */}
+      {/* Tabs Switcher - Fully responsive */}
       <div className="w-full overflow-x-auto no-scrollbar mb-6 sm:mb-8 pb-1">
         <div className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl w-max shadow-inner">
           <button
@@ -129,49 +106,20 @@ export default function Settings() {
       {/* TAB 1: Wallpaper & Backdrop */}
       {activeTab === "appearance" && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 animate-fadeIn">
-          {/* Wallpaper Selection & Upload */}
+          {/* Wallpaper Selection (Curated Presets) */}
           <div className="lg:col-span-8 flex flex-col gap-5 sm:gap-6">
             <LiquidGlass className="p-4 sm:p-6" radius={16} tint={glassTint} frost={glassFrost}>
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h2 className="text-base sm:text-lg font-semibold text-white tracking-wide">Wallpaper Selection</h2>
                   <p className="text-xs sm:text-sm text-white/60">
-                    Upload your own custom image or pick one of the aesthetic presets.
+                    Choose from our curated collection of aesthetic wallpapers.
                   </p>
                 </div>
               </div>
 
-              {uploadError && (
-                <div className="mb-4 text-xs text-rose-300 bg-rose-500/20 border border-rose-500/30 px-3 py-2 rounded-lg">
-                  {uploadError}
-                </div>
-              )}
-
               {/* Wallpaper Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-                {/* Upload Card */}
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="group relative h-28 sm:h-36 rounded-xl border-2 border-dashed border-white/30 hover:border-white/70 bg-white/5 hover:bg-white/10 transition-all flex flex-col items-center justify-center cursor-pointer p-3 sm:p-4 text-center overflow-hidden"
-                >
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                    className="hidden"
-                  />
-                  <div className="p-2.5 sm:p-3 rounded-full bg-white/10 group-hover:bg-white/20 text-white/80 group-hover:text-white group-hover:scale-110 transition-all mb-1 sm:mb-2">
-                    <LuImagePlus className="text-xl sm:text-2xl" />
-                  </div>
-                  <span className="text-[11px] sm:text-xs font-medium text-white/90 group-hover:text-white">
-                    Upload Image
-                  </span>
-                  <span className="text-[9px] sm:text-[10px] text-white/50 mt-0.5">PNG, JPG, WebP</span>
-                </div>
-
-                {/* Presets */}
                 {PRESET_WALLPAPERS.map((preset) => {
                   const isSelected = wallpaper === preset.url;
                   return (
@@ -189,14 +137,14 @@ export default function Settings() {
                         alt={preset.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
                         <span className="text-[11px] sm:text-xs font-semibold text-white drop-shadow truncate">
                           {preset.name}
                         </span>
                       </div>
                       {isSelected && (
                         <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-emerald-500 text-white p-1 rounded-full shadow-lg">
-                          <LuCheck className="text-[10px] sm:text-xs stroke-3" />
+                          <LuCheck className="text-[10px] sm:text-xs stroke-[3]" />
                         </div>
                       )}
                     </div>
@@ -268,13 +216,13 @@ export default function Settings() {
 
           {/* Live Preview Card */}
           <div className="lg:col-span-4">
-            <LiquidGlass className="p-4 sm:p-5 h-fit flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
+            <LiquidGlass className="p-4 sm:p-5 h-full flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
               <h2 className="text-sm sm:text-base font-semibold text-white tracking-wide mb-3 flex items-center gap-2">
                 <LuLayers className="text-base sm:text-lg text-emerald-400" />
                 Live Preview
               </h2>
 
-              <div className="relative flex-1 min-h-45 sm:min-h-55 rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
+              <div className="relative flex-1 min-h-[180px] sm:min-h-[220px] rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
                 {/* Background image preview */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-all duration-300"
@@ -292,7 +240,7 @@ export default function Settings() {
                 />
 
                 {/* Sample Mini Glass Card */}
-                <div className="relative z-10 w-full max-w-47.5 p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
+                <div className="relative z-10 w-full max-w-[190px] p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 mx-auto mb-2 flex items-center justify-center">
                     <LuSparkles className="text-emerald-300 text-xs sm:text-sm" />
                   </div>

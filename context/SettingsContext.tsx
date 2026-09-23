@@ -20,14 +20,24 @@ export const PRESET_WALLPAPERS: WallpaperPreset[] = [
     url: "/bg-lummipng.png",
   },
   {
-    id: "minimal-dark",
+    id: "deep-space",
     name: "Deep Space",
     url: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    id: "gradient-sunset",
+    id: "velvet-dusk",
     name: "Velvet Dusk",
     url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2128&auto=format&fit=crop",
+  },
+  {
+    id: "aurora-glow",
+    name: "Aurora Glow",
+    url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2069&auto=format&fit=crop",
+  },
+  {
+    id: "dark-mountain",
+    name: "Obsidian Peak",
+    url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
