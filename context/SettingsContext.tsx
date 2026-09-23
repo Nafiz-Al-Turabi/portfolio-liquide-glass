@@ -27,7 +27,7 @@ export const PRESET_WALLPAPERS: WallpaperPreset[] = [
   {
     id: "velvet-dusk",
     name: "Velvet Dusk",
-    url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2128&auto=format&fit=crop",
+    url: "wallpaperflare.com_wallpaper (4).jpg",
   },
   {
     id: "aurora-glow",
