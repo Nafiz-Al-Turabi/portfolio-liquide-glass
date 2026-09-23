@@ -5,19 +5,7 @@
   --foreground: #171717;
 }
 
-/* @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 @font-face {
   font-family: "SaucerBB";
   src: url("/fonts/SaucerBB.ttf") format("truetype");
@@ -35,7 +23,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
-  /* Hide scrollbar for Firefox */
   scrollbar-width: none;
   /* Hide scrollbar for IE and Edge */
   -ms-overflow-style: none;
@@ -57,6 +44,6 @@ body::-webkit-scrollbar {
 }
 /* Hide scrollbar for IE, Edge and Firefox utility */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
 }
