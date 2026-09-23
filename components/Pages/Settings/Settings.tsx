@@ -178,7 +178,7 @@ export default function Settings() {
                     step="1"
                     value={blur}
                     onChange={(e) => setBlur(Number(e.target.value))}
-                    className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                    className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
                   />
                   <div className="flex justify-between text-[9px] sm:text-[10px] text-white/40 mt-1">
                     <span>Sharp (0px)</span>
@@ -202,7 +202,7 @@ export default function Settings() {
                     step="5"
                     value={overlayOpacity}
                     onChange={(e) => setOverlayOpacity(Number(e.target.value))}
-                    className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                    className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
                   />
                   <div className="flex justify-between text-[9px] sm:text-[10px] text-white/40 mt-1">
                     <span>Vibrant (10%)</span>
@@ -284,7 +284,7 @@ export default function Settings() {
                   step="0.05"
                   value={glassFrost}
                   onChange={(e) => setGlassFrost(Number(e.target.value))}
-                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
                 />
                 <div className="flex justify-between text-[9px] sm:text-[10px] text-white/40 mt-1">
                   <span>Ultra Clear (10%)</span>
@@ -308,7 +308,7 @@ export default function Settings() {
                   step="0.05"
                   value={glassTint}
                   onChange={(e) => setGlassTint(Number(e.target.value))}
-                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                  className="w-full h-1.5 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
                 />
                 <div className="flex justify-between text-[9px] sm:text-[10px] text-white/40 mt-1">
                   <span>Transparent (0%)</span>
