@@ -189,14 +189,14 @@ export default function Settings() {
                         alt={preset.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
                         <span className="text-[11px] sm:text-xs font-semibold text-white drop-shadow truncate">
                           {preset.name}
                         </span>
                       </div>
                       {isSelected && (
                         <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-emerald-500 text-white p-1 rounded-full shadow-lg">
-                          <LuCheck className="text-[10px] sm:text-xs stroke-[3]" />
+                          <LuCheck className="text-[10px] sm:text-xs stroke-3" />
                         </div>
                       )}
                     </div>
@@ -268,13 +268,13 @@ export default function Settings() {
 
           {/* Live Preview Card */}
           <div className="lg:col-span-4">
-            <LiquidGlass className="p-4 sm:p-5 h-full flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
+            <LiquidGlass className="p-4 sm:p-5 h-fit flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
               <h2 className="text-sm sm:text-base font-semibold text-white tracking-wide mb-3 flex items-center gap-2">
                 <LuLayers className="text-base sm:text-lg text-emerald-400" />
                 Live Preview
               </h2>
 
-              <div className="relative flex-1 min-h-[180px] sm:min-h-[220px] rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
+              <div className="relative flex-1 min-h-45 sm:min-h-55 rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
                 {/* Background image preview */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-all duration-300"
@@ -292,7 +292,7 @@ export default function Settings() {
                 />
 
                 {/* Sample Mini Glass Card */}
-                <div className="relative z-10 w-full max-w-[190px] p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
+                <div className="relative z-10 w-full max-w-47.5 p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 mx-auto mb-2 flex items-center justify-center">
                     <LuSparkles className="text-emerald-300 text-xs sm:text-sm" />
                   </div>
