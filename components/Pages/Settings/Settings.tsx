@@ -40,7 +40,7 @@ export default function Settings() {
   const [activeTab, setActiveTab] = useState<"appearance" | "glass" | "system">("appearance");
 
   return (
-    <div className="text-white w-full max-w-5xl mx-auto pb-24 sm:pb-28 pt-1 sm:pt-4 px-1">
+    <div className="text-white w-full max-w-7xl mx-auto pb-24 sm:pb-28 pt-1 sm:pt-4 px-1">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
@@ -137,14 +137,14 @@ export default function Settings() {
                         alt={preset.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-2 sm:p-2.5">
                         <span className="text-[11px] sm:text-xs font-semibold text-white drop-shadow truncate">
                           {preset.name}
                         </span>
                       </div>
                       {isSelected && (
                         <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-emerald-500 text-white p-1 rounded-full shadow-lg">
-                          <LuCheck className="text-[10px] sm:text-xs stroke-[3]" />
+                          <LuCheck className="text-[10px] sm:text-xs stroke-3" />
                         </div>
                       )}
                     </div>
@@ -216,13 +216,13 @@ export default function Settings() {
 
           {/* Live Preview Card */}
           <div className="lg:col-span-4">
-            <LiquidGlass className="p-4 sm:p-5 h-full flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
+            <LiquidGlass className="p-4 sm:p-5 h-fit flex flex-col" radius={16} tint={glassTint} frost={glassFrost}>
               <h2 className="text-sm sm:text-base font-semibold text-white tracking-wide mb-3 flex items-center gap-2">
                 <LuLayers className="text-base sm:text-lg text-emerald-400" />
                 Live Preview
               </h2>
 
-              <div className="relative flex-1 min-h-[180px] sm:min-h-[220px] rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
+              <div className="relative flex-1 min-h-45 sm:min-h-55 rounded-xl overflow-hidden border border-white/20 shadow-2xl flex items-center justify-center p-3 sm:p-4">
                 {/* Background image preview */}
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-all duration-300"
@@ -240,7 +240,7 @@ export default function Settings() {
                 />
 
                 {/* Sample Mini Glass Card */}
-                <div className="relative z-10 w-full max-w-[190px] p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
+                <div className="relative z-10 w-full max-w-47.5 p-3 sm:p-4 rounded-xl border border-white/30 bg-white/15 backdrop-blur-md shadow-lg text-center">
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/20 mx-auto mb-2 flex items-center justify-center">
                     <LuSparkles className="text-emerald-300 text-xs sm:text-sm" />
                   </div>
@@ -355,7 +355,7 @@ export default function Settings() {
           <LiquidGlass className="p-4 sm:p-6" radius={16} tint={glassTint} frost={glassFrost}>
             <div className="flex items-start justify-between gap-3 sm:gap-4">
               <div className="flex gap-2.5 sm:gap-3">
-                <div className="p-2.5 sm:p-3 rounded-xl bg-white/10 text-white mt-1 shrink-0">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-white/10 text-white mt-1 shrink-0 h-fit">
                   {soundEffects ? <LuVolume2 className="text-xl sm:text-2xl" /> : <LuVolumeX className="text-xl sm:text-2xl text-white/40" />}
                 </div>
                 <div>
@@ -368,13 +368,13 @@ export default function Settings() {
 
               <button
                 onClick={() => setSoundEffects(!soundEffects)}
-                className={`w-11 sm:w-12 h-6 sm:h-7 rounded-full p-0.5 sm:p-1 transition-colors cursor-pointer border shrink-0 ${
+                className={`w-11 sm:w-12 h-4 sm:h-5 rounded-full p-0.5 sm:p-1 transition-colors cursor-pointer border shrink-0 ${
                   soundEffects ? "bg-emerald-500/80 border-emerald-400" : "bg-white/10 border-white/20"
                 }`}
               >
                 <div
-                  className={`w-4.5 sm:w-5 h-4.5 sm:h-5 rounded-full bg-white transition-transform ${
-                    soundEffects ? "translate-x-5" : "translate-x-0"
+                  className={`w-4.5 -mt-1.75 sm:w-6 h-4.5 sm:h-6 rounded-full bg-white transition-transform ${
+                    soundEffects ? "translate-x-5" : "-translate-x-1"
                   }`}
                 />
               </button>
@@ -385,7 +385,7 @@ export default function Settings() {
           <LiquidGlass className="p-4 sm:p-6" radius={16} tint={glassTint} frost={glassFrost}>
             <div className="flex items-start justify-between gap-3 sm:gap-4">
               <div className="flex gap-2.5 sm:gap-3">
-                <div className="p-2.5 sm:p-3 rounded-xl bg-white/10 text-white mt-1 shrink-0">
+                <div className="p-2.5 sm:p-3 rounded-xl bg-white/10 text-white mt-1 shrink-0 h-fit">
                   <LuActivity className="text-xl sm:text-2xl" />
                 </div>
                 <div>
@@ -398,13 +398,13 @@ export default function Settings() {
 
               <button
                 onClick={() => setReduceMotion(!reduceMotion)}
-                className={`w-11 sm:w-12 h-6 sm:h-7 rounded-full p-0.5 sm:p-1 transition-colors cursor-pointer border shrink-0 ${
+                className={`w-11 sm:w-12 h-4 sm:h-5 rounded-full p-0.5 sm:p-1 transition-colors cursor-pointer border shrink-0 ${
                   reduceMotion ? "bg-emerald-500/80 border-emerald-400" : "bg-white/10 border-white/20"
                 }`}
               >
                 <div
-                  className={`w-4.5 sm:w-5 h-4.5 sm:h-5 rounded-full bg-white transition-transform ${
-                    reduceMotion ? "translate-x-5" : "translate-x-0"
+                  className={`w-4.5 -mt-1.75 sm:w-6 h-4.5 sm:h-6 rounded-full bg-white transition-transform ${
+                    reduceMotion ? "translate-x-5" : "-translate-x-1"
                   }`}
                 />
               </button>

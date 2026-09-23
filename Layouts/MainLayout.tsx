@@ -13,7 +13,7 @@ function MainLayoutContent({ children }: MainLayoutProps) {
 
   return (
     <div
-      className="min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed transition-all duration-700"
+      className="min-h-screen overflow-hidden bg-cover bg-center bg-no-repeat bg-fixed transition-all duration-300"
       style={{
         backgroundImage: `url('${wallpaper}')`,
       }}
