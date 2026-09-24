@@ -1,6 +1,7 @@
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
 import Image from "next/image";
 import Link from "next/link";
+import { MdOutlineArrowOutward } from "react-icons/md";
 
 export default function Home() {
   return (
@@ -33,10 +34,50 @@ export default function Home() {
             <Link href="/"> Contact Me</Link>
           </LiquidGlass>
         </div>
+        <div className="mt-10 flex  gap-10">
+          <div>
+            <h2 className="text-xl font-bold">2.5+</h2>
+            <p className="text-sm font-semibold tracking-wide">
+              Years Experience
+            </p>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">20+</h2>
+            <p className="text-sm font-semibold tracking-wide">Projects</p>
+          </div>
+          <div>
+            <h2 className="text-xl font-bold">100%</h2>
+            <p className="text-sm font-semibold tracking-wide">
+              Clients Satisfaction
+            </p>
+          </div>
+        </div>
       </div>
       <div>
-        <LiquidGlass className="pt-4" radius={16}>
-          <img src="/profile.png" alt="" className="rounded-2xl w-96" />
+        <LiquidGlass
+          className="p-6 w-80 h-80 rotate-y-[-30deg] rotate-x-20 rotate-z-6 transition-transform duration-500 hover:rotate-y-[5deg] hover:rotate-x-0 hover:rotate-z-0"
+          radius={16}
+        >
+          <img
+            src="/profile.png"
+            alt=""
+            className="rounded-full w-30 border border-gray-400/50 p-1 "
+          />
+          <h1 className="text-sm font-bold tracking-wide mt-4">
+            Nafiz AL Turabi
+          </h1>
+          <p className="text-sm font-thin">Front-end Developer</p>
+          <div className="flex items-center gap-2 text-xs mt-4 bg-green-500/10 text-green-500 w-fit px-4 py-2 rounded-full">
+            <div className="h-2 w-2 bg-green-500 rounded-full"></div> Available
+            For Work
+          </div>
+          <div className="flex justify-end">
+            <Link href='/'>
+              <LiquidGlass className="w-fit p-2 hover:scale-105 duration-300" radius={50} tint={0}>
+                <MdOutlineArrowOutward size={24} />
+              </LiquidGlass>
+            </Link>
+          </div>
         </LiquidGlass>
       </div>
     </div>
