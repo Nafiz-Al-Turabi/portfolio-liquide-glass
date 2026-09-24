@@ -11,7 +11,6 @@ const technologies = [
   { img: "/technology/pngwing.com (14).png", name: "Nuxt.js" },
   { img: "/technology/pngwing.com (12).png", name: "Node.js" },
   { img: "/technology/pngwing.com (8).png", name: "Express.js" },
-  // { img: "/technology/pngwing.com (16).png", name: "Docker" },
 ];
 export default function Technology() {
   return (
