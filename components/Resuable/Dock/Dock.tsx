@@ -27,8 +27,8 @@ const dockItems = [
   { name: "Contact", href: "/contact", icon: FiMail },
 ];
 const utilityItems = [
-  { name: "GitHub", href: "https://github.com", icon: FiGithub },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: FiLinkedin },
+  { name: "GitHub", href: "https://github.com/Nafiz-Al-Turabi", icon: FiGithub },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/nafiz-al-turabi-570386278/", icon: FiLinkedin },
   { name: "Facebook", href: "https://facebook.com", icon: FiFacebook },
   { name: "Instagram", href: "https://instagram.com", icon: FiInstagram },
   { name: "Resume", href: "/resume.pdf", icon: FiDownload },
@@ -158,6 +158,7 @@ export default function Dock() {
               <Link
                 key={item.href}
                 href={item.href}
+                target="_blank"
                 ref={(element) => {
                   itemRefs.current[itemIndex] = element;
                 }}
