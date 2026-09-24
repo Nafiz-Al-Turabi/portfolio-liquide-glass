@@ -6,7 +6,7 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 
 export default function Home() {
   return (
-    <div className="pt-20">
+    <div className="pt-20 fade-in">
       <div className="text-white min-h-[80%] flex items-center justify-between ">
         <div className="">
           <p className="text-xs font-semibold">Hi, I'm</p>
