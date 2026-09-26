@@ -34,7 +34,7 @@ export default function ProjectCard() {
             className="p-1 w-fit px-3 capitalize cursor-pointer"
             radius={4}
           >
-            <a href="" className="flex items-center">
+            <a href="" className="flex items-center py-2">
               <RiGithubLine size={24} /> Github Repo
             </a>
           </LiquidGlass>
@@ -42,7 +42,7 @@ export default function ProjectCard() {
             className="p-1 w-fit px-3 capitalize cursor-pointer"
             radius={4}
           >
-            <a href="" className="flex items-center">
+            <a href="" className="flex items-center py-2">
               <CiMonitor size={24} /> Live Site
             </a>
           </LiquidGlass>
