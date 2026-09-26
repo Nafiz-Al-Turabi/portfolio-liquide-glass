@@ -4,10 +4,11 @@ import ProjectCard from "@/components/Resuable/Card/ProjectCard";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
 import { useSettings } from "@/context/SettingsContext";
 import { useState } from "react";
+import { projects } from "@/Data/projectData";
 
 export default function Work() {
-      const { glassFrost, glassTint } = useSettings();
-  const [activeTab, setActiveTab] = useState(0);
+  const { glassFrost, glassTint } = useSettings();
+  const [activeTab, setActiveTab] = useState("all");
   const tabs = [
     { label: "All", key: "all" },
     { label: "React.js", key: "react" },
@@ -15,6 +16,11 @@ export default function Work() {
     { label: "Vue.js", key: "vue" },
     { label: "Others", key: "others" },
   ];
+  const activeIndex = tabs.findIndex((tab) => tab.key === activeTab);
+  const filteredProjects =
+    activeTab === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeTab);
 
   return (
     <div className="text-white pt-20 px-4 sm:px-6 lg:px-8">
@@ -61,7 +67,7 @@ export default function Work() {
                 height: "calc(100% - 4px)",
                 left: 0,
                 width: `calc((100% - ${(tabs.length - 1) * 4}px) / ${tabs.length})`,
-                transform: `translateX(calc(${activeTab} * (100% + 4px)))`,
+                transform: `translateX(calc(${activeIndex} * (100% + 4px)))`,
                 pointerEvents: "none",
               }}
               tint={0.5}
@@ -70,14 +76,14 @@ export default function Work() {
             >
               <span />
             </LiquidGlass>
-            {tabs?.map((tab, index) => (
+            {tabs.map((tab) => (
               <button
-                key={`${tab.key}-${index}`}
+                key={tab.key}
                 type="button"
-                aria-pressed={activeTab === index}
-                onClick={() => setActiveTab(index)}
+                aria-pressed={activeTab === tab.key}
+                onClick={() => setActiveTab(tab.key)}
                 className={`relative z-10 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 ${
-                  activeTab === index
+                  activeTab === tab.key
                     ? "text-green-300"
                     : "text-white/75 hover:text-white"
                 }`}
@@ -88,9 +94,18 @@ export default function Work() {
           </div>
         </LiquidGlass>
       </div>
-      <div className="mt-10 grid grid-cols-3 gap-4">
-        <ProjectCard />
-      </div>
+      <LiquidGlass
+        className="mt-10"
+        tint={glassTint}
+        frost={glassFrost}
+        targets=".project-glass-target"
+      >
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
+      </LiquidGlass>
     </div>
   );
 }

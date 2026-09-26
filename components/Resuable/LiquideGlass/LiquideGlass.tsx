@@ -12,6 +12,7 @@ type Props = {
   frost?: number;
   radius?: number;
   backdrop?: "auto" | string;
+  targets?: string;
 };
 
 export default function LiquidGlass({
@@ -23,6 +24,7 @@ export default function LiquidGlass({
   frost = 0.28,
   radius,
   backdrop = "auto",
+  targets,
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,6 +36,7 @@ export default function LiquidGlass({
       tintTone,
       frost,
       backdrop,
+      targets,
       material: {
         refraction: 50,
       },
