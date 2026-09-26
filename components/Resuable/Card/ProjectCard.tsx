@@ -29,7 +29,7 @@ export default function ProjectCard() {
             </p>
           </div>
         </div>
-        <div className="mt-4 border-t border-white/20 p-4 flex gap-4">
+        <div className="border-t border-white/20 p-4 flex gap-4">
           <LiquidGlass
             className="p-1 w-fit px-3 capitalize cursor-pointer"
             radius={4}
