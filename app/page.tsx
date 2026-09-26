@@ -24,7 +24,7 @@ export default function Home() {
               className="w-fit px-6 py-2 hover:scale-105 duration-300 cursor-pointer"
               radius={50}
               frost={1}
-              tint={0.5}
+              tint={1}
             >
               <Link href="/">View Projects</Link>
             </LiquidGlass>
