@@ -11,7 +11,7 @@ type ProjectCardProps = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="project-glass-target group overflow-hidden rounded-[20px] border border-white/15 transition duration-500 hover:-translate-y-1 hover:border-white/30">
-        <div className="relative aspect-16/10 overflow-hidden">
+      <div className="relative aspect-16/10 overflow-hidden">
         <img
           src={project.image}
           alt={`${project.title} preview`}
@@ -34,46 +34,46 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             {project.title}
           </h2>
         </div>
-        </div>
+      </div>
 
-        <div className="p-4 sm:p-5">
-          <p className="line-clamp-2 text-sm leading-6 text-white/75">
-            {project.description}
-          </p>
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            {project.technologies.map((technology) => (
-              <span
-                key={technology}
-                className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white/85"
-              >
-                {technology}
-              </span>
-            ))}
-          </div>
+      <div className="p-4 sm:p-5">
+        <p className="line-clamp-2 text-sm leading-6 text-white/75">
+          {project.description}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {project.technologies.map((technology) => (
+            <span
+              key={technology}
+              className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs font-medium text-white/85"
+            >
+              {technology}
+            </span>
+          ))}
         </div>
+      </div>
 
-        <div className="flex gap-3 border-t border-white/15 px-4 py-4 sm:px-5">
-          <div className="project-glass-target flex-1 rounded-[10px] border border-white/15 px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white">
-            <a
-              href={project.repo}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2"
-            >
-              <RiGithubLine size={19} /> Github Repo
-            </a>
-          </div>
-          <div className="project-glass-target flex-1 rounded-[10px] border border-white/15 px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white">
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-center gap-2"
-            >
-              <CiMonitor size={19} /> Live Site
-            </a>
-          </div>
+      <div className="flex gap-3 border-t border-white/15 px-4 py-4 sm:px-5">
+        <div className="project-glass-target flex-1 rounded-[10px] border border-white/15 px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white">
+          <a
+            href={project.repo}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2"
+          >
+            <RiGithubLine size={19} /> Github Repo
+          </a>
         </div>
+        <div className="project-glass-target flex-1 rounded-[10px] border border-white/15 px-3 py-2 text-sm font-medium text-white/90 transition-colors hover:text-white">
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2"
+          >
+            <CiMonitor size={19} /> Live Site
+          </a>
+        </div>
+      </div>
     </article>
   );
 }
