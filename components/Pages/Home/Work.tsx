@@ -1,5 +1,6 @@
 "use client";
 
+import ProjectCard from "@/components/Resuable/Card/ProjectCard";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
 import { useState } from "react";
 
@@ -9,7 +10,6 @@ export default function Work() {
     { label: "All", key: "all" },
     { label: "React.js", key: "react" },
     { label: "Next.js", key: "next" },
-    { label: "Vue.js", key: "vue" },
     { label: "Vue.js", key: "vue" },
     { label: "Others", key: "others" },
   ];
@@ -28,17 +28,17 @@ export default function Work() {
           </h1>
 
           <p className="mt-3 max-w-[70ch] text-sm leading-6 text-white/60">
-            A collection of projects I&apos;ve designed and developed with a focus on
-            modern interfaces, smooth interactions, scalable architecture, and
-            meaningful user experiences. Each project reflects my approach to
-            turning ideas and designs into polished, functional digital
-            experiences.
+            A collection of projects I&apos;ve designed and developed with a
+            focus on modern interfaces, smooth interactions, scalable
+            architecture, and meaningful user experiences. Each project reflects
+            my approach to turning ideas and designs into polished, functional
+            digital experiences.
           </p>
         </div>
 
         {/* Tabs */}
         <LiquidGlass
-          className="h-fit w-fit p-1"
+          className="h-fit w-fit px-1 py-0.5"
           radius={50}
           tint={0.3}
           frost={1}
@@ -85,6 +85,9 @@ export default function Work() {
             ))}
           </div>
         </LiquidGlass>
+      </div>
+      <div className="mt-10">
+        <ProjectCard />
       </div>
     </div>
   );
