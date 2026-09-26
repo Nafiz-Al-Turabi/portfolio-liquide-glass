@@ -23,7 +23,7 @@ export default function Work() {
       : projects.filter((project) => project.category === activeTab);
 
   return (
-    <div className="text-white pt-20 px-4 sm:px-6 lg:px-8">
+    <div className="text-white px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
         {/* Heading */}
         <div>
