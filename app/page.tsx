@@ -15,8 +15,7 @@ export default function Home() {
           </h1>
           <h3 className="text-2xl font-medium my-3">Front-end Developer</h3>
           <p className="text-sm lg:w-[70ch] ">
-            Hello! I’m Nafiz Al Turabi. Web Developer with over 1.5 years of
-            learning experience and 3 months working experience. Experienced
+            Hello! I’m Nafiz Al Turabi. Web Developer with over 2.5+ years experience. Experienced
             with all stages of the development cycle for dynamic web projects.
           </p>
           <div className="flex gap-4 mt-4">
