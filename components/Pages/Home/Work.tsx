@@ -2,9 +2,11 @@
 
 import ProjectCard from "@/components/Resuable/Card/ProjectCard";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
+import { useSettings } from "@/context/SettingsContext";
 import { useState } from "react";
 
 export default function Work() {
+      const { glassFrost, glassTint } = useSettings();
   const [activeTab, setActiveTab] = useState(0);
   const tabs = [
     { label: "All", key: "all" },
@@ -16,7 +18,7 @@ export default function Work() {
 
   return (
     <div className="text-white pt-20 px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
         {/* Heading */}
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
@@ -27,7 +29,7 @@ export default function Work() {
             Featured Projects
           </h1>
 
-          <p className="mt-3 max-w-[70ch] text-sm leading-6 text-white/60">
+          <p className="mt-3 max-w-[70ch] text-sm leading-6 text-white">
             A collection of projects I&apos;ve designed and developed with a
             focus on modern interfaces, smooth interactions, scalable
             architecture, and meaningful user experiences. Each project reflects
@@ -40,8 +42,8 @@ export default function Work() {
         <LiquidGlass
           className="h-fit w-fit px-1 py-0.5"
           radius={50}
-          tint={0.3}
-          frost={1}
+          tint={glassTint}
+          frost={glassFrost}
         >
           <div
             className="relative grid items-center gap-1"
@@ -86,7 +88,7 @@ export default function Work() {
           </div>
         </LiquidGlass>
       </div>
-      <div className="mt-10">
+      <div className="mt-10 grid grid-cols-3 gap-4">
         <ProjectCard />
       </div>
     </div>
