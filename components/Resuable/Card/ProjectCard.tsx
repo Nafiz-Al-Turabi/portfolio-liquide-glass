@@ -13,6 +13,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <article className="project-glass-target group overflow-hidden rounded-[20px] border border-white/15 transition duration-500 hover:-translate-y-1 hover:border-white/30">
       <div className="relative aspect-16/10 overflow-hidden">
         <img
+          crossOrigin="anonymous"
           src={project.image}
           alt={`${project.title} preview`}
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
