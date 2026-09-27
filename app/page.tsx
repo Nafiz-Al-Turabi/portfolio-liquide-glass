@@ -1,10 +1,16 @@
+"use client"
 import Technology from "@/components/Pages/Home/Technology";
 import LiquidGlass from "@/components/Resuable/LiquideGlass/LiquideGlass";
+import { useSettings } from "@/context/SettingsContext";
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineArrowOutward } from "react-icons/md";
 
 export default function Home() {
+    const {
+      glassFrost,
+      glassTint,
+    } = useSettings();
   return (
     <div className="pt-20 fade-in">
       <div className="text-white min-h-[80%] flex items-center justify-between ">
@@ -56,6 +62,8 @@ export default function Home() {
         </div>
         <div>
           <LiquidGlass
+            tint={glassTint}
+            frost={glassFrost}
             className="p-6 w-60 lg:w-80 h-80 rotate-y-[-30deg] rotate-x-20 rotate-z-6 transition-transform duration-500 hover:rotate-y-[5deg] hover:rotate-x-0 hover:rotate-z-0"
             radius={16}
           >
